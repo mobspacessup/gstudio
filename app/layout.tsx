@@ -6,8 +6,8 @@ import { SchemaOrg } from "@/components/schema-org"
 import Script from "next/script"
 // Импортируйте один из компонентов чата (временно закомментировано)
 // import ChatWidget from "@/components/chat-widget" // или Chatbot, или TawkChat
-// Добавьте импорт PromoPopup в начало файла
-import PromoPopup from "@/components/promo-popup"
+// Заменяем импорт PromoPopup на MasterclassPopup
+import MasterclassPopup from "@/components/masterclass-popup"
 
 const montserrat = Montserrat({
   subsets: ["latin", "cyrillic"],
@@ -84,8 +84,8 @@ export default function RootLayout({
       <body className={montserrat.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
-          {/* Добавляем компонент поп-апа */}
-          <PromoPopup />
+          {/* Добавляем компонент мастер-класса */}
+          <MasterclassPopup />
           {/* Временно отключаем компонент чата */}
           {/* <ChatWidget /> */}
         </ThemeProvider>
