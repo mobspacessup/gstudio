@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, Calendar, Clock, Users } from "lucide-react"
+import { X, Calendar, Clock, Users, Play } from "lucide-react"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,6 +13,8 @@ export default function MasterclassPopup() {
   const [isOpen, setIsOpen] = useState(false)
   const [showEnrollmentForm, setShowEnrollmentForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [videoError, setVideoError] = useState(false)
   const [formResponse, setFormResponse] = useState<{
     success?: boolean
     message?: string
@@ -82,6 +84,15 @@ export default function MasterclassPopup() {
     }
   }
 
+  // Extract video ID from YouTube URL
+  const getYouTubeVideoId = (url: string) => {
+    const match = url.match(/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/)
+    return match ? match[1] : null
+  }
+
+  const videoId = "eWWBOkiGOq8" // Your video ID
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent
@@ -120,17 +131,71 @@ export default function MasterclassPopup() {
               {/* Видео секция */}
               <div className="relative bg-black">
                 <div className="aspect-[9/16] relative overflow-hidden w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] mx-auto">
-                  <iframe
-                    src="https://www.youtube.com/embed/eWWBOkiGOq8?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&autoplay=1&mute=1"
-                    title="G Studio мастер класс проектирования мебели"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      border: "none",
-                    }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+                  {videoError ? (
+                    // Fallback если видео не загружается
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gray-900 text-white p-4">
+                      <Play className="h-12 w-12 mb-4 opacity-70" />
+                      <p className="text-sm text-center mb-4">Видео временно недоступно</p>
+                      <a
+                        href={`https://www.youtube.com/watch?v=${videoId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 underline text-sm"
+                      >
+                        Смотреть на YouTube
+                      </a>
+                    </div>
+                  ) : (
+                    <>
+                      {/* Thumbnail пока видео загружается */}
+                      {!videoLoaded && (
+                        <div className="absolute inset-0 z-10">
+                          <img
+                            src={thumbnailUrl || "/placeholder.svg"}
+                            alt="Превью видео мастер-класса"
+                            className="w-full h-full object-cover"
+                            onError={() => setVideoError(true)}
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* YouTube iframe */}
+                      <iframe
+                        src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&controls=1&showinfo=0&iv_load_policy=3&fs=1&disablekb=0&autoplay=0&mute=0&start=0&enablejsapi=1&origin=${typeof window !== "undefined" ? window.location.origin : ""}`}
+                        title="G Studio мастер класс проектирования мебели"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          border: "none",
+                        }}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        onLoad={() => {
+                          setVideoLoaded(true)
+                          console.log("Video iframe loaded successfully")
+                        }}
+                        onError={() => {
+                          setVideoError(true)
+                          console.error("Video iframe failed to load")
+                        }}
+                      />
+                    </>
+                  )}
+                </div>
+
+                {/* Альтернативная ссылка */}
+                <div className="text-center py-2">
+                  <a
+                    href={`https://www.youtube.com/watch?v=${videoId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-muted-foreground hover:text-primary underline"
+                  >
+                    Открыть видео в YouTube
+                  </a>
                 </div>
               </div>
 
@@ -180,7 +245,7 @@ export default function MasterclassPopup() {
               </div>
             </div>
           ) : (
-            // Форма записи
+            // Форма записи (остается без изменений)
             <div className="flex flex-col max-h-[95vh] overflow-y-auto">
               {/* Заголовок формы */}
               <div className="bg-primary/10 p-4 sm:p-6 border-b flex-shrink-0">
