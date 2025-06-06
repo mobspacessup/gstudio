@@ -85,7 +85,7 @@ export default function MasterclassPopup() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent
-        className="sm:max-w-[600px] p-0 overflow-hidden"
+        className="w-[95vw] max-w-[600px] max-h-[95vh] p-0 overflow-hidden overflow-y-auto"
         hideCloseButton
         aria-describedby="masterclass-popup-description"
       >
@@ -97,77 +97,63 @@ export default function MasterclassPopup() {
           {/* Кнопка закрытия */}
           <button
             onClick={handleClose}
-            className="absolute right-4 top-4 rounded-full bg-background/80 p-1 text-muted-foreground hover:bg-background hover:text-foreground z-20"
+            className="absolute right-2 top-2 sm:right-4 sm:top-4 rounded-full bg-background/80 p-1.5 sm:p-1 text-muted-foreground hover:bg-background hover:text-foreground z-20 touch-manipulation"
             aria-label="Закрыть"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
 
           {!showEnrollmentForm ? (
             // Основное содержимое с видео
-            <div>
+            <div className="flex flex-col">
               {/* Заголовок */}
-              <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-6 text-center">
-                <h2 className="text-2xl font-bold mb-2">
+              <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-4 sm:p-6 text-center">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 leading-tight">
                   Долгожданный мастер класс от
                   <br />
                   G-STUDIO
                 </h2>
-                <p className="text-lg opacity-90">Не пропусти! Количество мест ограничено!</p>
-                <p className="text-lg font-medium mt-2">14 июня в 16:00</p>
+                <p className="text-sm sm:text-base md:text-lg opacity-90">Не пропусти! Количество мест ограничено!</p>
+                <p className="text-sm sm:text-base md:text-lg font-medium mt-2">14 июня в 16:00</p>
               </div>
 
               {/* Видео секция */}
               <div className="relative bg-black">
-                <div className="aspect-video relative overflow-hidden">
-                  <div
-                    className="absolute inset-0"
+                <div className="aspect-[9/16] relative overflow-hidden w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] mx-auto">
+                  <iframe
+                    src="https://www.youtube.com/embed/eWWBOkiGOq8?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&autoplay=1&mute=1"
+                    title="G Studio мастер класс проектирования мебели"
                     style={{
-                      position: "relative",
-                      paddingBottom: "56.25%" /* 16:9 Aspect Ratio */,
-                      height: 0,
-                      overflow: "hidden",
+                      width: "100%",
+                      height: "100%",
+                      border: "none",
                     }}
-                  >
-                    <iframe
-                      src="https://www.youtube.com/embed/V9COANyh91Y?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1"
-                      title="Мастер класс проектирования мебели"
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        border: "none",
-                        pointerEvents: "none",
-                      }}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
               </div>
 
               {/* Информация о мастер-классе */}
-              <div className="p-6 space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="h-4 w-4 text-primary" />
+              <div className="p-4 sm:p-6 space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-center">
+                  <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                    <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                     <span>14 июня</span>
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 text-primary" />
+                  <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                    <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                     <span>16:00</span>
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                    <Users className="h-4 w-4 text-primary" />
+                  <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                    <Users className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                     <span>15 мест</span>
                   </div>
                 </div>
 
-                <div className="bg-muted/50 rounded-lg p-4">
-                  <h3 className="font-bold mb-2">Что вы узнаете:</h3>
-                  <ul className="text-sm space-y-1 text-muted-foreground">
+                <div className="bg-muted/50 rounded-lg p-3 sm:p-4">
+                  <h3 className="font-bold mb-2 text-sm sm:text-base">Что вы узнаете:</h3>
+                  <ul className="text-xs sm:text-sm space-y-1 text-muted-foreground">
                     <li>• Как войти в мебельную индустрию без опыта</li>
                     <li>• Секреты работы в программе Базис Мебельщик</li>
                     <li>• Реальные кейсы наших выпускников</li>
@@ -176,11 +162,18 @@ export default function MasterclassPopup() {
                 </div>
 
                 {/* Кнопки */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <Button className="flex-1" onClick={handleEnrollClick}>
+                <div className="flex flex-col gap-3 pt-2">
+                  <Button
+                    className="w-full h-11 sm:h-10 text-sm sm:text-base touch-manipulation"
+                    onClick={handleEnrollClick}
+                  >
                     Записаться на мастер-класс
                   </Button>
-                  <Button variant="outline" className="flex-1" onClick={handleClose}>
+                  <Button
+                    variant="outline"
+                    className="w-full h-11 sm:h-10 text-sm sm:text-base touch-manipulation"
+                    onClick={handleClose}
+                  >
                     Закрыть
                   </Button>
                 </div>
@@ -188,22 +181,22 @@ export default function MasterclassPopup() {
             </div>
           ) : (
             // Форма записи
-            <div>
+            <div className="flex flex-col max-h-[95vh] overflow-y-auto">
               {/* Заголовок формы */}
-              <div className="bg-primary/10 p-6 border-b">
+              <div className="bg-primary/10 p-4 sm:p-6 border-b flex-shrink-0">
                 <button
                   onClick={handleBackToVideo}
-                  className="text-sm text-muted-foreground hover:text-foreground mb-4 flex items-center gap-1"
+                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground mb-3 sm:mb-4 flex items-center gap-1 touch-manipulation"
                 >
                   ← Назад к видео
                 </button>
                 <div className="text-center space-y-2">
-                  <h3 className="text-xl font-bold text-primary">
+                  <h3 className="text-lg sm:text-xl font-bold text-primary leading-tight">
                     Регистрация на Бесплатный Мастер Класс от
                     <br />
                     G-STUDIO
                   </h3>
-                  <div className="space-y-1 text-sm text-muted-foreground">
+                  <div className="space-y-1 text-xs sm:text-sm text-muted-foreground">
                     <p>
                       <strong>Дата:</strong> 14 Июня, 2025 г.
                     </p>
@@ -221,140 +214,149 @@ export default function MasterclassPopup() {
               </div>
 
               {/* Форма */}
-              <div className="p-6">
+              <div className="p-4 sm:p-6 flex-1 overflow-y-auto">
                 {formResponse && (
                   <Alert
                     className={`mb-4 ${formResponse.success ? "bg-green-50 text-green-800 border-green-200" : "bg-red-50 text-red-800 border-red-200"}`}
                   >
-                    <AlertTitle>{formResponse.success ? "Успешно!" : "Ошибка!"}</AlertTitle>
-                    <AlertDescription>{formResponse.message}</AlertDescription>
+                    <AlertTitle className="text-sm">{formResponse.success ? "Успешно!" : "Ошибка!"}</AlertTitle>
+                    <AlertDescription className="text-xs sm:text-sm">{formResponse.message}</AlertDescription>
                   </Alert>
                 )}
 
                 <form id="masterclassForm" action={handleSubmit} className="space-y-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="city">
+                    <Label htmlFor="city" className="text-sm">
                       Город проживания <span className="text-red-500">*</span>
                     </Label>
-                    <Input id="city" name="city" required />
+                    <Input id="city" name="city" required className="h-11 sm:h-10 text-sm touch-manipulation" />
                     {formResponse?.errors?.city && (
-                      <p className="text-sm text-red-500">{formResponse.errors.city[0]}</p>
+                      <p className="text-xs text-red-500">{formResponse.errors.city[0]}</p>
                     )}
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="fullName">
+                    <Label htmlFor="fullName" className="text-sm">
                       Имя Фамилия <span className="text-red-500">*</span>
                     </Label>
-                    <Input id="fullName" name="fullName" required />
+                    <Input id="fullName" name="fullName" required className="h-11 sm:h-10 text-sm touch-manipulation" />
                     {formResponse?.errors?.fullName && (
-                      <p className="text-sm text-red-500">{formResponse.errors.fullName[0]}</p>
+                      <p className="text-xs text-red-500">{formResponse.errors.fullName[0]}</p>
                     )}
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="phone">
+                    <Label htmlFor="phone" className="text-sm">
                       Номер телефона <span className="text-red-500">*</span>
                     </Label>
-                    <Input id="phone" name="phone" required />
+                    <Input id="phone" name="phone" required className="h-11 sm:h-10 text-sm touch-manipulation" />
                     {formResponse?.errors?.phone && (
-                      <p className="text-sm text-red-500">{formResponse.errors.phone[0]}</p>
+                      <p className="text-xs text-red-500">{formResponse.errors.phone[0]}</p>
                     )}
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="organization">
+                    <Label htmlFor="organization" className="text-sm">
                       Организация <span className="text-red-500">*</span>
                     </Label>
-                    <Input id="organization" name="organization" required />
+                    <Input
+                      id="organization"
+                      name="organization"
+                      required
+                      className="h-11 sm:h-10 text-sm touch-manipulation"
+                    />
                     {formResponse?.errors?.organization && (
-                      <p className="text-sm text-red-500">{formResponse.errors.organization[0]}</p>
+                      <p className="text-xs text-red-500">{formResponse.errors.organization[0]}</p>
                     )}
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="position">
+                    <Label htmlFor="position" className="text-sm">
                       Какая у вас сейчас должность? <span className="text-red-500">*</span>
                     </Label>
-                    <Input id="position" name="position" required />
+                    <Input id="position" name="position" required className="h-11 sm:h-10 text-sm touch-manipulation" />
                     {formResponse?.errors?.position && (
-                      <p className="text-sm text-red-500">{formResponse.errors.position[0]}</p>
+                      <p className="text-xs text-red-500">{formResponse.errors.position[0]}</p>
                     )}
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="basisExperience">
+                    <Label htmlFor="basisExperience" className="text-sm">
                       Работали ли вы ранее в программе Базис Мебельщик? <span className="text-red-500">*</span>
                     </Label>
-                    <div className="space-y-2 mt-1">
-                      <div className="flex items-center space-x-2">
+                    <div className="space-y-3 mt-2">
+                      <div className="flex items-start space-x-3">
                         <input
                           type="radio"
                           id="basis-expert"
                           name="basisExperience"
                           value="Да! Уверенный пользователь"
-                          className="h-4 w-4 border-gray-300 text-primary focus:ring-primary"
+                          className="h-4 w-4 mt-0.5 border-gray-300 text-primary focus:ring-primary touch-manipulation flex-shrink-0"
                           required
                         />
-                        <Label htmlFor="basis-expert" className="font-normal">
+                        <Label htmlFor="basis-expert" className="font-normal text-sm leading-relaxed">
                           Да! Уверенный пользователь
                         </Label>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-start space-x-3">
                         <input
                           type="radio"
                           id="basis-tried"
                           name="basisExperience"
                           value="Пробовал, но хочу научится"
-                          className="h-4 w-4 border-gray-300 text-primary focus:ring-primary"
+                          className="h-4 w-4 mt-0.5 border-gray-300 text-primary focus:ring-primary touch-manipulation flex-shrink-0"
                         />
-                        <Label htmlFor="basis-tried" className="font-normal">
+                        <Label htmlFor="basis-tried" className="font-normal text-sm leading-relaxed">
                           Пробовал, но хочу научится
                         </Label>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-start space-x-3">
                         <input
                           type="radio"
                           id="basis-no"
                           name="basisExperience"
                           value="Нет"
-                          className="h-4 w-4 border-gray-300 text-primary focus:ring-primary"
+                          className="h-4 w-4 mt-0.5 border-gray-300 text-primary focus:ring-primary touch-manipulation flex-shrink-0"
                         />
-                        <Label htmlFor="basis-no" className="font-normal">
+                        <Label htmlFor="basis-no" className="font-normal text-sm leading-relaxed">
                           Нет
                         </Label>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-start space-x-3">
                         <input
                           type="radio"
                           id="basis-other"
                           name="basisExperience"
                           value="other"
-                          className="h-4 w-4 border-gray-300 text-primary focus:ring-primary"
+                          className="h-4 w-4 mt-0.5 border-gray-300 text-primary focus:ring-primary touch-manipulation flex-shrink-0"
                         />
-                        <Label htmlFor="basis-other" className="font-normal">
+                        <Label htmlFor="basis-other" className="font-normal text-sm leading-relaxed">
                           Другое:
                         </Label>
                       </div>
-                      <div className="ml-6">
+                      <div className="ml-7">
                         <Input
                           id="basisOther"
                           name="basisOther"
                           placeholder="Укажите ваш вариант"
-                          className="text-sm"
+                          className="text-sm h-11 sm:h-10 touch-manipulation"
                         />
                       </div>
                     </div>
                     {formResponse?.errors?.basisExperience && (
-                      <p className="text-sm text-red-500">{formResponse.errors.basisExperience[0]}</p>
+                      <p className="text-xs text-red-500">{formResponse.errors.basisExperience[0]}</p>
                     )}
                   </div>
 
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  <Button
+                    type="submit"
+                    className="w-full h-12 sm:h-10 text-sm sm:text-base touch-manipulation"
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? "Отправка..." : "Зарегистрироваться на мастер-класс"}
                   </Button>
 
-                  <p className="text-xs text-muted-foreground text-center">
+                  <p className="text-xs text-muted-foreground text-center leading-relaxed">
                     Нажимая кнопку, вы соглашаетесь с{" "}
                     <a href="/privacy" className="underline hover:no-underline">
                       политикой конфиденциальности
