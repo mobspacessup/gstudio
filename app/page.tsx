@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, CheckCircle, Users, Award, Clock } from "lucide-react"
+import { ArrowRight, Users, Award, Clock, Briefcase, HeadphonesIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
@@ -37,6 +37,24 @@ export default function Home() {
 
   // Дата окончания акции - 22 апреля 2025
   const promoEndDate = new Date("2025-04-22T23:59:59")
+
+  const features = [
+    {
+      icon: <Users className="h-8 w-8" />,
+      title: "Мини-группы до 7 человек",
+      description: "Обучение в небольших группах позволяет преподавателю уделить внимание каждому студенту",
+    },
+    {
+      icon: <Briefcase className="h-8 w-8" />,
+      title: "Гарантия трудоустройства",
+      description: "После окончания любого из наших курсов мы гарантируем трудоустройство в мебельные компании",
+    },
+    {
+      icon: <HeadphonesIcon className="h-8 w-8" />,
+      title: "Поддержка после курса",
+      description: "Мы продолжаем поддерживать наших выпускников, помогая с разбором проектов и консультациями",
+    },
+  ]
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -146,38 +164,17 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3 lg:gap-12 mt-12">
-              {[
-                {
-                  icon: <CheckCircle className="h-12 w-12" />,
-                  title: "Мини-группы до 7 человек",
-                  description: "Обучение в небольших группах позволяет преподавателю уделить внимание каждому студенту",
-                },
-                {
-                  icon: <CheckCircle className="h-12 w-12" />,
-                  title: "Гарантия трудоустройства",
-                  description:
-                    "После окончания любого из наших курсов мы гарантируем трудоустройство в мебельные компании",
-                },
-                {
-                  icon: <CheckCircle className="h-12 w-12" />,
-                  title: "Поддержка после курса",
-                  description:
-                    "Мы продолжаем поддерживать наших выпускников, помогая с разбором проектов и консультациями",
-                },
-              ].map((feature, index) => (
+              {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-xl border bg-gradient-to-b from-background to-background/80 p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-primary/50"
+                  className="group relative overflow-hidden rounded-lg border-2 border-muted bg-background p-8 shadow-sm transition-all duration-200 hover:shadow-lg hover:border-primary/30"
                 >
-                  <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-primary/10 transition-all duration-300 group-hover:bg-primary/20"></div>
-                  <div className="relative z-10">
-                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/20">
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-lg bg-primary/10 text-primary border border-primary/20">
                       {feature.icon}
                     </div>
-                    <h3 className="text-2xl font-bold mb-3 transition-colors duration-300 group-hover:text-primary">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-foreground">{feature.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                   </div>
                 </div>
               ))}
