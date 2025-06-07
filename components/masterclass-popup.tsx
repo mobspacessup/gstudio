@@ -137,12 +137,12 @@ export default function MasterclassPopup() {
                       <Play className="h-12 w-12 mb-4 opacity-70" />
                       <p className="text-sm text-center mb-4">Видео временно недоступно</p>
                       <a
-                        href={`https://www.youtube.com/watch?v=${videoId}`}
+                        href="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81-A0Fo1Q08A0LIrKQEBHBYPzCQAnmlCb.mp4"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-400 underline text-sm"
                       >
-                        Смотреть на YouTube
+                        Смотреть видео напрямую
                       </a>
                     </div>
                   ) : (
@@ -150,38 +150,35 @@ export default function MasterclassPopup() {
                       {/* Thumbnail пока видео загружается */}
                       {!videoLoaded && (
                         <div className="absolute inset-0 z-10">
-                          <img
-                            src={thumbnailUrl || "/placeholder.svg"}
-                            alt="Превью видео мастер-класса"
-                            className="w-full h-full object-cover"
-                            onError={() => setVideoError(true)}
-                          />
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                          <div className="w-full h-full bg-black flex items-center justify-center">
                             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
                           </div>
                         </div>
                       )}
 
-                      {/* YouTube iframe */}
-                      <iframe
-                        src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&controls=1&showinfo=0&iv_load_policy=3&fs=1&disablekb=0&autoplay=0&mute=0&start=0&enablejsapi=1&origin=${typeof window !== "undefined" ? window.location.origin : ""}`}
-                        title="G Studio мастер класс проектирования мебели"
+                      {/* HTML5 Video Player */}
+                      <video
+                        src="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81-A0Fo1Q08A0LIrKQEBHBYPzCQAnmlCb.mp4"
+                        controls
+                        autoPlay
+                        playsInline
+                        preload="metadata"
+                        className="w-full h-full object-cover"
                         style={{
                           width: "100%",
                           height: "100%",
-                          border: "none",
                         }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        onLoad={() => {
+                        onLoadedData={() => {
                           setVideoLoaded(true)
-                          console.log("Video iframe loaded successfully")
+                          console.log("Video loaded successfully")
                         }}
-                        onError={() => {
+                        onError={(e) => {
                           setVideoError(true)
-                          console.error("Video iframe failed to load")
+                          console.error("Video failed to load", e)
                         }}
-                      />
+                      >
+                        Ваш браузер не поддерживает видео.
+                      </video>
                     </>
                   )}
                 </div>
@@ -189,12 +186,12 @@ export default function MasterclassPopup() {
                 {/* Альтернативная ссылка */}
                 <div className="text-center py-2">
                   <a
-                    href={`https://www.youtube.com/watch?v=${videoId}`}
+                    href="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81-A0Fo1Q08A0LIrKQEBHBYPzCQAnmlCb.mp4"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-muted-foreground hover:text-primary underline"
                   >
-                    Открыть видео в YouTube
+                    Открыть видео в новой вкладке
                   </a>
                 </div>
               </div>
