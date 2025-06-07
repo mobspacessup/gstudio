@@ -137,7 +137,7 @@ export default function MasterclassPopup() {
                       <Play className="h-12 w-12 mb-4 opacity-70" />
                       <p className="text-sm text-center mb-4">Видео временно недоступно</p>
                       <a
-                        href="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81-A0Fo1Q08A0LIrKQEBHBYPzCQAnmlCb.mp4"
+                        href="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%20%281%29-PxCiskQpQhk7UUjLJhO1pTWpWP17jM.mp4"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-400 underline text-sm"
@@ -158,7 +158,7 @@ export default function MasterclassPopup() {
 
                       {/* HTML5 Video Player */}
                       <video
-                        src="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81-A0Fo1Q08A0LIrKQEBHBYPzCQAnmlCb.mp4"
+                        src="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%20%281%29-PxCiskQpQhk7UUjLJhO1pTWpWP17jM.mp4"
                         controls
                         autoPlay
                         playsInline
@@ -186,7 +186,7 @@ export default function MasterclassPopup() {
                 {/* Альтернативная ссылка */}
                 <div className="text-center py-2">
                   <a
-                    href="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81-A0Fo1Q08A0LIrKQEBHBYPzCQAnmlCb.mp4"
+                    href="https://ufxadov9sxakws1w.public.blob.vercel-storage.com/g-studio%20%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%20%281%29-PxCiskQpQhk7UUjLJhO1pTWpWP17jM.mp4"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-muted-foreground hover:text-primary underline"
